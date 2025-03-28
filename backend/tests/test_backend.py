@@ -9,17 +9,15 @@ print(sys.path)
 
 client = TestClient(app)
 
-def test_start_page():
-    response = client.get("/colors")
-    assert response.status_code == 200
-    assert isinstance(response.json(), list)
-
-
 
 @pytest.mark.parametrize(
     "color_list, expected_status, expected_color",
     [
         ([], 400, None),
+        (["#12"], 400, None),
+        (["123456"], 400, None),
+        (["#123456333"], 400, None),
+        (["#sdlsFF"], 400, None),
         (["#AABBCC", "#154331", "#A0B1C2", "#000000", "#FFFFFF"], 200, "The brightest color is:  #FFFFFF (r=255, g=255, b=255), called White"),
         (["#123456"], 200, "The brightest color is:  #123456 (r=18, g=52, b=86), called MidnightBlue"),
         (["#000000", "#00FF00"], 200, "The brightest color is:  #00FF00 (r=0, g=255, b=0), called Lime"),
@@ -31,7 +29,7 @@ def test_start_page():
 def test_get_brightest_color(mock_fetch_colors, mock_css_colors,  color_list, expected_status, expected_color):
     mock_fetch_colors.return_value = mock_css_colors
 
-    color_service = ColorService(color_list)
-    result = color_service.get_brightest_color_info()
+    response = client.post("/brightest_color/", json={"colors": color_list})
 
-    assert result == expected_color
+    assert response.status_code == expected_status
+    assert response.json().get("brightest_color", None) == expected_color

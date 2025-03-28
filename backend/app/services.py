@@ -1,10 +1,8 @@
 import numpy as np
 from typing import List
-from app.config import CSS_COLORS_API_BASE_URL
-from app.models import CSSColor
+from backend.app.config import CSS_COLORS_API_BASE_URL
+from backend.app.models import CSSColor
 import requests
-import re
-from unittest.mock import patch
 
 
 class Color:
@@ -25,14 +23,7 @@ class Color:
 
 class ColorService:
     def __init__(self, color_list: List[str]):
-
-        self.colors = []
-        for hex_color in color_list:
-            if re.fullmatch(r"^#([A-Fa-f0-9]{6})$", hex_color):
-                self.colors.append(Color(hex_color))
-            else:
-                ...  # TODO: get
-
+        self.colors = [Color(hex_color)  for hex_color in color_list]
         self.css_colors = self.fetch_css_colors()
 
     @property
