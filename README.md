@@ -87,3 +87,13 @@ streamlit run frontend/app.py
 ```
 
 
+### Docker Setup
+Build the Docker containers:
+```bash
+docker-compose build
+```
+
+Start the application:
+```bash
+docker-compose up
+```
