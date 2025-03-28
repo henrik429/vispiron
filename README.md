@@ -38,14 +38,52 @@ Enhance the output by the name of the brightest color.
 To solve this task, please use the API posted at https://www.csscolorsapi.com/ in your Python source code and implement an algorithm to find the most suitable color name.
 
 
-## Solution
+# Color Matcher Application
 
-![Example Image](App.png)
+## Overview
 
-- frontend with streamlit
-- backend with fastapi
-- using https://www.csscolorsapi.com/ to gather CSS colors and find closest rgb values from the brightest color in color list to print the name
+This project is a web application that helps you find the closest CSS color name for a given color using a simple and intuitive interface.
 
-## How to run
+![Application Preview](App.png)
+
+## Technology Stack
+
+- **Frontend**: Streamlit
+- **Backend**: FastAPI
+- **Color Data Source**: CSS Colors API (https://www.csscolorsapi.com/)
+
+## Prerequisites
+
+- Python 3.12
+- Poetry (Dependency Management)
+
+## Installation
+
+1. Ensure you have Python 3.12 installed
+2. Install Poetry:
+   ```bash
+   pip install poetry
+   ```
+3. Clone the repository
+4. Install dependencies:
+   ```bash
+   poetry install
+   ```
+
+## Running the Application
+
+### Backend Server
+
+From the project root directory, start the FastAPI backend:
+```bash
+uvicorn backend.app.main:app --reload
+```
+
+### Frontend Interface
+
+From the project root directory, launch the Streamlit frontend:
+```bash
+streamlit run frontend/app.py
+```
 
 
