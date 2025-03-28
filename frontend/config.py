@@ -1,0 +1,1 @@
+CSS_COLORS_API_BASE_URL = "https://www.csscolorsapi.com/api/colors"

@@ -1,8 +1,9 @@
 import streamlit as st
 import requests
 import re
+import os
 
-API_URL = "http://127.0.0.1:8000/brightest_color"
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000/brightest_color")
 
 st.title("Hex Color to Brightness")
 
